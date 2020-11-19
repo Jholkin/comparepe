@@ -1,0 +1,41 @@
+@startuml
+package compareLatops{
+ component scrappl
+ component mapproductl
+ component saveproductl
+
+ httpl - scrappl
+ scrappl - mapproductl
+ mapproductl - saveproductl
+}
+
+package compareTvs{
+ component scrapptv
+ component mapproducttv
+ component saveproducttv
+
+ httptv - scrapptv
+ scrapptv - mapproducttv
+ mapproducttv - saveproducttv
+}
+
+package core{
+ component persistenceproduct
+ component compare
+ component views
+ component controllers
+ database mysql{
+  component laptops
+  component tvs
+ }
+
+ persistenceproduct --> mysql
+ persistenceproduct - compare
+ views --> controllers
+ controllers --> compare
+}
+
+adapter - persistenceproduct
+saveproductl --> adapter
+saveproducttv --> adapter
+@enduml
